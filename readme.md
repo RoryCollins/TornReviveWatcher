@@ -5,6 +5,8 @@ This is a tool to help with revive contracts, ultimately it's going to be config
 
 
 ## Usage
+FIRST you need to copy `.env_example` to a file called `.env`, and update the `API_KEY` value with your own
+
 Use `--on` for factions whose ONLINE members you want to revive
 
 Use `--off` for factions whose OFFLINE members you want to revive
