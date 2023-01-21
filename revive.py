@@ -15,18 +15,19 @@ args = parser.parse_args()
 onlineFactions = []
 offlineFactions = []
 
+service = TornApiService()
+
 
 def get_member_list(factionId):
-    return MemberList(get_faction_json(factionId)['members'].items())
+    return MemberList(service, service.get_faction_json(factionId)['members'].items())
 
 
 if args.on is not None:
     for factionId in args.on.split(","):
-        onlineMemberList = get_member_list(factionId).online_only()
-        onlineFactions.append(onlineMemberList)
+        onlineFactions.append(get_member_list(factionId).online_only())
 
 if args.off is not None:
-    for faction in args.off.split(","):
+    for factionId in args.off.split(","):
         offlineFactions.append(get_member_list(factionId).offline_only())
 
 targets = functools.reduce(lambda a, b: a.plus(b), onlineFactions + offlineFactions)
