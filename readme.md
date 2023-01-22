@@ -13,3 +13,10 @@ Use `--off` for factions whose OFFLINE members you want to revive
 
 
 `python3 revive.py --on 1234,2345 --off 5678`
+
+
+## What's coming up?
+
+1. Unit Tests - ain't doing shit else without 'em
+2. Exclusions - got some premium-only members but you ain't premium? ignore the fuckers
+3. Inclusions - when the contract says only to look for a set list of users
