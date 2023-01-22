@@ -20,3 +20,4 @@ Use `--off` for factions whose OFFLINE members you want to revive
 1. Unit Tests - ain't doing shit else without 'em
 2. Exclusions - got some premium-only members but you ain't premium? ignore the fuckers
 3. Inclusions - when the contract says only to look for a set list of users
+4. Error handling - when you exhaust your API Key
