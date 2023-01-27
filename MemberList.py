@@ -27,6 +27,11 @@ class MemberList(object):
     def revivable_only(self):
         return self.new_member_list([m for m in self.members if self.is_revivable(m.user_id)])
 
+    def print_if_revivable(self):
+        for m in self.members:
+            if self.is_revivable(m.user_id):
+                print(f"{m.name} [{m.user_id}]")
+
     def open_if_revivable(self):
         for m in self.members:
             if self.is_revivable(m.user_id):

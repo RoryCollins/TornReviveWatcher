@@ -14,3 +14,4 @@ class TornApiService(object):
             lambda x: Member(x[0], x[1]["name"], "Hospital" in x[1]['status']['state'], x[1]['last_action']['status']),
             self.gateway.get_faction_json(faction_id)["members"].items())
         return list(result_map)
+
