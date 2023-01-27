@@ -13,26 +13,26 @@ class MemberList(object):
         return MemberList(self.apiService, members)
 
     def filter_in(self, filterList):
-        return self.new_member_list([(k, v) for k, v in self.members if k in filterList])
+        return self.new_member_list([m for m in self.members if m.user_id in filterList])
 
     def online_only(self):
-        return self.new_member_list([(k, v) for k, v in self.members if v['last_action']['status'] == 'Online'])
+        return self.new_member_list([m for m in self.members if m.activity_status == "Online"])
 
     def offline_only(self):
-        return self.new_member_list([(k, v) for k, v in self.members if v['last_action']['status'] == 'Offline'])
+        return self.new_member_list([m for m in self.members if m.activity_status == "Offline"])
 
     def hospitalised_only(self):
-        return self.new_member_list([(k, v) for k, v in self.members if v['status']['state'] == 'Hospital'])
+        return self.new_member_list([m for m in self.members if m.hospitalised])
 
     def revivable_only(self):
-        return self.new_member_list([(k, v) for k, v in self.members if self.is_revivable(k)])
+        return self.new_member_list([m for m in self.members if self.is_revivable(m.user_id)])
 
     def open_if_revivable(self):
-        for k, _ in self.members:
-            if self.is_revivable(k):
-                webbrowser.open(f'https://www.torn.com/profiles.php?XID={k}')
+        for m in self.members:
+            if self.is_revivable(m.user_id):
+                webbrowser.open(f'https://www.torn.com/profiles.php?XID={m.user_id}')
             else:
-                print(f"not revivable: {k}")
+                print(f"not revivable: {m.user_id}")
 
     def plus(self, other):
         return self.new_member_list(self.members + other.members)

@@ -1,3 +1,6 @@
+from Member import Member
+
+
 class TornApiService(object):
 
     def __init__(self, gateway):
@@ -7,6 +10,7 @@ class TornApiService(object):
         return self.gateway.get_user_json(user_id)
 
     def get_faction_members(self, faction_id):
-        return self.gateway.get_faction_json(faction_id)["members"].items()
-
-
+        result_map = map(
+            lambda x: Member(x[0], x[1]["name"], "Hospital" in x[1]['status']['state'], x[1]['last_action']['status']),
+            self.gateway.get_faction_json(faction_id)["members"].items())
+        return list(result_map)

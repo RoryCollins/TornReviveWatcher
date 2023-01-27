@@ -1,16 +1,16 @@
-import json
-
+from Member import Member
+from Tests.MockTornApiGateway import MockTornApiGateway
 from TornApiService import TornApiService
 
 
-class MockTornApiGateway(object):
-    def get_faction_json(self, faction_id):
-        f = open("stub_faction_json.json", "r")
-        return json.load(f)
-
-
 def test_get_faction_members():
-    gateway = MockTornApiGateway()
-    service = TornApiService(gateway)
+    service = TornApiService(MockTornApiGateway())
     members = service.get_faction_members(1234)
     assert len(members) == 100
+
+
+def test_parse_json_to_domain_object():
+    service = TornApiService(MockTornApiGateway())
+    members = service.get_faction_members(1234)
+    expected = Member('12', "SandyClaws", False, "Offline")
+    assert members[0] == expected

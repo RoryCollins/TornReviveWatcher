@@ -1,8 +1,11 @@
 from MemberList import MemberList
 import json
 
-factionJson = open("stub_faction_json.json", "r")
-members = json.load(factionJson)['members'].items()
+from Tests.MockTornApiGateway import MockTornApiGateway
+from TornApiService import TornApiService
+
+tornApiService = TornApiService(MockTornApiGateway())
+members = tornApiService.get_faction_members(1234)
 
 
 def test_initialise_with_empty_set():
