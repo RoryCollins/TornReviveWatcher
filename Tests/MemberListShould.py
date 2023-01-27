@@ -16,15 +16,17 @@ def test_initialise_with_non_empty_set():
 
 
 def test_filter_online_members():
-    f = open("stub_faction_json.json", "r")
-    j = json.load(f)
     member_list = MemberList(None, members).online_only()
     assert len(member_list.members) == 3
 
 
 def test_filter_offline_members():
-    f = open("stub_faction_json.json", "r")
-    j = json.load(f)
     member_list = MemberList(None, members).offline_only()
     assert len(member_list.members) == 87
 
+
+def test_join_member_lists():
+    online_members = MemberList(None, members).online_only()
+    offline_members = MemberList(None, members).offline_only()
+    union_members = online_members.plus(offline_members)
+    assert len(union_members.members) == 90
