@@ -2,6 +2,7 @@ import argparse
 import functools
 
 from MemberList import MemberList
+from TornApiGateway import TornApiGateway
 from TornApiService import *
 
 parser = argparse.ArgumentParser(description="Tool for revivers to find available targets. Comma separation for "
@@ -15,11 +16,12 @@ args = parser.parse_args()
 onlineFactions = []
 offlineFactions = []
 
-service = TornApiService()
+gateway = TornApiGateway()
+service = TornApiService(gateway)
 
 
 def get_member_list(factionId):
-    return MemberList(service, service.get_faction_json(factionId)['members'].items())
+    return MemberList(service, service.get_faction_members(factionId))
 
 
 if args.on is not None:
