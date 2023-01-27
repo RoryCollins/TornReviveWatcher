@@ -43,5 +43,5 @@ class MemberList(object):
         return self.new_member_list(self.members + other.members)
 
     def print(self):
-        for k, _ in self.members:
-            print(k)
+        for m in self.members:
+            print(f"{m.name} [{m.user_id}]")
