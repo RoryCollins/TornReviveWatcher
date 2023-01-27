@@ -14,7 +14,6 @@ Use `--off` for factions whose OFFLINE members you want to revive
 
 `python3 revive.py --on 1234,2345 --off 5678`
 
-
 ## What's coming up?
 
 1. Unit Tests - ain't doing shit else without 'em
