@@ -37,7 +37,7 @@ class MemberList(object):
             if self.is_revivable(m.user_id):
                 webbrowser.open(f'https://www.torn.com/profiles.php?XID={m.user_id}')
             else:
-                print(f"not revivable: {m.user_id}")
+                print(f"not revivable: {m.name} [{m.user_id}]")
 
     def plus(self, other):
         return self.new_member_list(self.members + other.members)
